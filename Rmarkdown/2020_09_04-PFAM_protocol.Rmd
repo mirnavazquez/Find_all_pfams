@@ -11,7 +11,7 @@ output: github_document
 
 - Within the MEBs directory, create a directory call **pfam** within the cycles dir. 
 
-- Move the following files to your directory cycles/pfam: **entropies.tab**, **my_Pfam.pfam.hmm** and **pfam2kegg.tab**. 
+- Move the following files to your directory cycles/pfam: [**entropies.tab**](https://github.com/mirnavazquez/Find_all_pfams/blob/master/data/), **my_Pfam.pfam.hmm** and [**pfam2kegg.tab**](https://github.com/mirnavazquez/Find_all_pfams/blob/master/data/). 
 
 - Move into the config directory and add the next line into the end of the **config.txt**.
 
