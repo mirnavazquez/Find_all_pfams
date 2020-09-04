@@ -110,9 +110,19 @@ Pfam_group1<-get_unique_pfams(pfam_matrix_clusters, "Group 1")
 Pfam_group2<-get_unique_pfams(pfam_matrix_clusters, "Group 2")
 ```
 
-##### What does this PFAM groups mean in terms of function?
+##### What does this PFAM groups mean?
 
-First, I will map the IDs of raw names to real PFAM names.
+If you look to your unique PFAMs you will see something like this:
+
+``` r
+head(Pfam_group1)
+```
+
+    ## [1] "pfam_29"  "pfam_46"  "pfam_189" "pfam_209" "pfam_210" "pfam_534"
+
+Now we need to map those IDs to meaningful names. To do that, we will
+use the
+[**pfam\_mapping.txt**](https://github.com/mirnavazquez/Find_all_pfams/blob/master/data/).
 
 ``` r
 pfam_mapping<-vroom::vroom("pfam_mapping.txt")
@@ -128,36 +138,22 @@ write.table(Mapped_pfams, file="Mapped_pfams.txt", quote = F, col.names = T, row
 head(Mapped_pfams)
 ```
 
-To get more informartion of the PFAMs, I ran this script:
-
-``` bash
-#!/bin/bash
-#Source:
-#https://github.com/Cantalapiedra/pfam_terms
-#Author Carlos Cantalapiedra:
-# code in bash
-# pfam_terms.tab contains a list of PFAM identifiers
-
-cat pfam_names.txt | while read  pfam; do
-desc=$(curl http://pfam.xfam.org/family/"$pfam"/desc | head -1);
-printf "$pfam\t";
-printf "$desc\n";
-done 2> /dev/null \
-> pfam_terms.desc.tab
-
-# Postprocessing of not found terms (since HTTP request returns always 200, even when the PFAM term was not found and an error is reported in HTML)
-
-cat pfam_terms.desc.tab | sed 's#<\!DOCTYPE.*#NF#' > tmp && mv tmp pfam_terms.desc.tab
-
-# END
-```
+To extract the real name of the PFAM, we can run the script
+[**pfam.terms.sh**](https://github.com/mirnavazquez/Find_all_pfams/blob/master/bash/)
 
 ##### Now the enrichement
+
+To make an enrichment analysis, you can use the
+[**dcGOR**](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1003929)
+package.
 
 ``` r
 library(dcGOR)
 library(tibble)
 ```
+
+We manipulate the files that we previously generate to create the input
+files to make the enrichment analysis with this function.
 
 ``` r
 get_input_for_enrch<-function(group_list, mapping_file){
