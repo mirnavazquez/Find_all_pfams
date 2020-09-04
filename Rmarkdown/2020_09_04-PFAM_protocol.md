@@ -2,7 +2,7 @@ Identify all possible PFAMs in your genome and extract usefull
 information
 ================
 
-##### Looking for the PFAM domains.
+#### Looking for the PFAM domains.
 
   - Install [MEBs](https://github.com/valdeanda/mebs).
 
@@ -45,13 +45,13 @@ perl mebs.pl -input /path/to/the/genomes/ -type genomic -comp > out_file.tsv
 tail /path/to/the/genomes/*pfam.hmmsearch.tab | grep "ok" | wc -l
 ```
 
-##### Make the a clustering analysis
+#### Make the a clustering analysis
 
 ``` bash
 python mebs/scripts/groups_1_mod.py out_file.tsv
 ```
 
-##### Which PFAMs are present in a certain cluster but not in the rest?
+#### Which PFAMs are present in a certain cluster but not in the rest?
 
 We read the \*.tsv file within R. As well, we load a file that contains
 your genome ID and to which group/cluster it corresponds.
@@ -110,7 +110,7 @@ Pfam_group1<-get_unique_pfams(pfam_matrix_clusters, "Group 1")
 Pfam_group2<-get_unique_pfams(pfam_matrix_clusters, "Group 2")
 ```
 
-##### What does this PFAM groups mean?
+#### What does this PFAM groups mean?
 
 If you look to your unique PFAMs you will see something like this:
 
@@ -149,7 +149,7 @@ head(Mapped_pfams)
 To extract the real name of the PFAM, we can run the script
 [**pfam.terms.sh**](https://github.com/mirnavazquez/Find_all_pfams/blob/master/bash/)
 
-##### Now the enrichement
+#### Now the enrichement
 
 To make an enrichment analysis, you can use the
 [**dcGOR**](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1003929)

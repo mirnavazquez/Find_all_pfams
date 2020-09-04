@@ -365,10 +365,9 @@ summary {
 </div>
 
 
-<div id="identify-all-possible-pfams-in-your-genome-and-extract-usefull-information" class="section level1">
-<h1>Identify all possible PFAMs in your genome and extract usefull information</h1>
-<div id="looking-for-the-pfam-domains." class="section level5">
-<h5>Looking for the PFAM domains.</h5>
+<p>Identify all possible PFAMs in your genome and extract usefull information ================</p>
+<div id="looking-for-the-pfam-domains." class="section level4">
+<h4>Looking for the PFAM domains.</h4>
 <ul>
 <li><p>Install <a href="https://github.com/valdeanda/mebs">MEBs</a>.</p></li>
 <li><p>Get into your <strong>MEBs</strong> directory</p></li>
@@ -390,12 +389,12 @@ summary {
 <!-- end list -->
 <pre class="bash"><code>tail /path/to/the/genomes/*pfam.hmmsearch.tab | grep &quot;ok&quot; | wc -l</code></pre>
 </div>
-<div id="make-the-a-clustering-analysis" class="section level5">
-<h5>Make the a clustering analysis</h5>
+<div id="make-the-a-clustering-analysis" class="section level4">
+<h4>Make the a clustering analysis</h4>
 <pre class="bash"><code>python mebs/scripts/groups_1_mod.py out_file.tsv</code></pre>
 </div>
-<div id="which-pfams-are-present-in-a-certain-cluster-but-not-in-the-rest" class="section level5">
-<h5>Which PFAMs are present in a certain cluster but not in the rest?</h5>
+<div id="which-pfams-are-present-in-a-certain-cluster-but-not-in-the-rest" class="section level4">
+<h4>Which PFAMs are present in a certain cluster but not in the rest?</h4>
 <p>We read the *.tsv file within R. As well, we load a file that contains your genome ID and to which group/cluster it corresponds.</p>
 <pre class="r"><code>library(vroom)
 pfam_matrix&lt;-vroom(&quot;out_pfam_2.tsv&quot;, delim=&quot;\t&quot;)</code></pre>
@@ -427,8 +426,8 @@ pfam_matrix&lt;-vroom(&quot;out_pfam_2.tsv&quot;, delim=&quot;\t&quot;)</code></
 <pre class="r"><code>Pfam_group1&lt;-get_unique_pfams(pfam_matrix_clusters, &quot;Group 1&quot;)
 Pfam_group2&lt;-get_unique_pfams(pfam_matrix_clusters, &quot;Group 2&quot;)</code></pre>
 </div>
-<div id="what-does-this-pfam-groups-mean" class="section level5">
-<h5>What does this PFAM groups mean?</h5>
+<div id="what-does-this-pfam-groups-mean" class="section level4">
+<h4>What does this PFAM groups mean?</h4>
 <p>If you look to your unique PFAMs you will see something like this:</p>
 <pre class="r"><code>head(Pfam_group1)</code></pre>
 <pre><code>## [1] &quot;pfam_29&quot;  &quot;pfam_46&quot;  &quot;pfam_189&quot; &quot;pfam_209&quot; &quot;pfam_210&quot; &quot;pfam_534&quot;</code></pre>
@@ -450,8 +449,8 @@ write.table(Mapped_pfams, file=&quot;Mapped_pfams.txt&quot;, quote = F, col.name
 ## 6       pfam_6 PF00389</code></pre>
 <p>To extract the real name of the PFAM, we can run the script <a href="https://github.com/mirnavazquez/Find_all_pfams/blob/master/bash/"><strong>pfam.terms.sh</strong></a></p>
 </div>
-<div id="now-the-enrichement" class="section level5">
-<h5>Now the enrichement</h5>
+<div id="now-the-enrichement" class="section level4">
+<h4>Now the enrichement</h4>
 <p>To make an enrichment analysis, you can use the <a href="https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1003929"><strong>dcGOR</strong></a> package.</p>
 <pre class="r"><code>library(dcGOR)
 library(tibble)</code></pre>
@@ -469,7 +468,6 @@ Enriched2&lt;-get_input_for_enrch(Pfam_group2, pfam_mapping)</code></pre>
 &quot;Pfam&quot;, ontology=&quot;GOMF&quot;)
 eoutput2 &lt;-dcEnrichment(Enriched2$PFAM, background = Mapped_CP9_pfams$PFAM, domain = 
 &quot;Pfam&quot;, ontology=&quot;GOMF&quot;)</code></pre>
-</div>
 </div>
 
 
