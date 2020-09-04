@@ -113,7 +113,7 @@ write.table(Mapped_pfams, file="Mapped_pfams.txt", quote = F, col.names = T, row
 Mapped_pfams<-Mapped_CP9_pfams
 ```
 
-```{r, eval=FALSE}
+```{r}
 head(Mapped_pfams)
 ```
 

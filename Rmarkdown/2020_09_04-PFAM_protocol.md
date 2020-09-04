@@ -138,6 +138,14 @@ write.table(Mapped_pfams, file="Mapped_pfams.txt", quote = F, col.names = T, row
 head(Mapped_pfams)
 ```
 
+    ##   pfam_PATHWAY    PFAM
+    ## 1       pfam_1 PF10417
+    ## 2       pfam_2 PF12574
+    ## 3       pfam_3 PF09847
+    ## 4       pfam_4 PF00244
+    ## 5       pfam_5 PF16998
+    ## 6       pfam_6 PF00389
+
 To extract the real name of the PFAM, we can run the script
 [**pfam.terms.sh**](https://github.com/mirnavazquez/Find_all_pfams/blob/master/bash/)
 
