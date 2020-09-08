@@ -32,7 +32,7 @@ perl mebs.pl -input /path/to/the/genomes/ -type genomic -comp > out_file.tsv
 tail /path/to/the/genomes/*pfam.hmmsearch.tab | grep "ok" | wc -l
 ```
 
-#### Make the a clustering analysis
+#### Make the clustering analysis
 
 Before starting, we will remove the columns in which we are not interested. I will use R for that. 
 
@@ -46,10 +46,25 @@ pfam_only_table_df<-pfam_table_df_2[,75:18003]
 write.table(pfam_only_table_df, file = "out_file2.tsv", sep = "\t", quote = FALSE, row.names = T)
 ```
 
+This file needs some extra edits like an empty first line and a tab on the second.
+
+Now we will run the python script **groups_1_mod.py** from mebs. To do that, we will need python3.8 and edit the script inline 19. In that line, you have to add the name of your tsv file.
+
 Now run the clustering script.
 
 ```{bash Clustering with MEBs, eval=FALSE}
-python mebs/scripts/groups_1_mod.py out_file2.tsv
+python3.8 mebs/scripts/groups_1_mod.py out_file2.tsv
+```
+
+With your output files create a file like looks like this:
+
+```{r include=FALSE}
+load("/media/jorgers/Seagate Backup Plus Drive/02.CP9/GitProjects/Find_all_pfams/data/Cluser.RData")
+```
+
+
+```{r echo=FALSE}
+head(clusters)
 ```
 
 #### Which PFAMs are present in a certain cluster but not in the rest? 
@@ -59,10 +74,6 @@ We read the *.tsv file within R. As well, we load a file that contains your geno
 ```{r, eval=FALSE}
 library(vroom)
 pfam_matrix<-vroom("out_pfam_2.tsv", delim="\t")
-```
-
-```{r include=FALSE}
-load("/media/jorgers/Seagate Backup Plus Drive/02.CP9/GitProjects/Find_all_pfams/data/Cluser.RData")
 ```
 
 ```{r, eval=FALSE}

@@ -45,7 +45,7 @@ perl mebs.pl -input /path/to/the/genomes/ -type genomic -comp > out_file.tsv
 tail /path/to/the/genomes/*pfam.hmmsearch.tab | grep "ok" | wc -l
 ```
 
-#### Make the a clustering analysis
+#### Make the clustering analysis
 
 Before starting, we will remove the columns in which we are not
 interested. I will use R for that.
@@ -60,11 +60,28 @@ pfam_only_table_df<-pfam_table_df_2[,75:18003]
 write.table(pfam_only_table_df, file = "out_file2.tsv", sep = "\t", quote = FALSE, row.names = T)
 ```
 
+This file needs some extra edits like an empty first line and a tab on
+the second.
+
+Now we will run the python script **groups\_1\_mod.py** from mebs. To do
+that, we will need python3.8 and edit the script inline 19. In that
+line, you have to add the name of your tsv file.
+
 Now run the clustering script.
 
 ``` bash
-python mebs/scripts/groups_1_mod.py out_file2.tsv
+python3.8 mebs/scripts/groups_1_mod.py out_file2.tsv
 ```
+
+With your output files create a file like looks like this:
+
+    ##           Genomes  Groups
+    ## 1     AB_03_Bin_3 Group 3
+    ## 2 AB_3033_Bin_153 Group 3
+    ## 3 AB_3033_Bin_163 Group 3
+    ## 4 AB_3033_Bin_184 Group 3
+    ## 5  AB_3033_Bin_57 Group 5
+    ## 6  AB_3033_Bin_59 Group 3
 
 #### Which PFAMs are present in a certain cluster but not in the rest?
 
