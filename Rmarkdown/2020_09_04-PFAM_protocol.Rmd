@@ -56,7 +56,7 @@ Now run the clustering script.
 python3.8 mebs/scripts/groups_1_mod.py out_file2.tsv
 ```
 
-With your output files create a file like looks like this:
+With your output files create a file that looks like this:
 
 ```{r include=FALSE}
 load("/media/jorgers/Seagate Backup Plus Drive/02.CP9/GitProjects/Find_all_pfams/data/Cluser.RData")

@@ -73,7 +73,7 @@ Now run the clustering script.
 python3.8 mebs/scripts/groups_1_mod.py out_file2.tsv
 ```
 
-With your output files create a file like looks like this:
+With your output files create a file that looks like this:
 
     ##           Genomes  Groups
     ## 1     AB_03_Bin_3 Group 3
