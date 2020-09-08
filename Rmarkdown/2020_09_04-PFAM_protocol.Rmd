@@ -34,8 +34,22 @@ tail /path/to/the/genomes/*pfam.hmmsearch.tab | grep "ok" | wc -l
 
 #### Make the a clustering analysis
 
+Before starting, we will remove the columns in which we are not interested. I will use R for that. 
+
+```{r, eval=FALSE}
+library("readr")
+pfam_table<-read_tsv("out_file.tsv")
+pfam_table_df<-as.data.frame(pfam_table)
+pfam_table_df_2 <- pfam_table_df[,-1]
+rownames(pfam_table_df_2) <- pfam_table_df[,1]
+pfam_only_table_df<-pfam_table_df_2[,75:18003]
+write.table(pfam_only_table_df, file = "out_file2.tsv", sep = "\t", quote = FALSE, row.names = T)
+```
+
+Now run the clustering script.
+
 ```{bash Clustering with MEBs, eval=FALSE}
-python mebs/scripts/groups_1_mod.py out_file.tsv
+python mebs/scripts/groups_1_mod.py out_file2.tsv
 ```
 
 #### Which PFAMs are present in a certain cluster but not in the rest? 

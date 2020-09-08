@@ -391,7 +391,16 @@ summary {
 </div>
 <div id="make-the-a-clustering-analysis" class="section level4">
 <h4>Make the a clustering analysis</h4>
-<pre class="bash"><code>python mebs/scripts/groups_1_mod.py out_file.tsv</code></pre>
+<p>Before starting, we will remove the columns in which we are not interested. I will use R for that.</p>
+<pre class="r"><code>library(&quot;readr&quot;)
+pfam_table&lt;-read_tsv(&quot;out_file.tsv&quot;)
+pfam_table_df&lt;-as.data.frame(pfam_table)
+pfam_table_df_2 &lt;- pfam_table_df[,-1]
+rownames(pfam_table_df_2) &lt;- pfam_table_df[,1]
+pfam_only_table_df&lt;-pfam_table_df_2[,75:18003]
+write.table(pfam_only_table_df, file = &quot;out_file2.tsv&quot;, sep = &quot;\t&quot;, quote = FALSE, row.names = T)</code></pre>
+<p>Now run the clustering script.</p>
+<pre class="bash"><code>python mebs/scripts/groups_1_mod.py out_file2.tsv</code></pre>
 </div>
 <div id="which-pfams-are-present-in-a-certain-cluster-but-not-in-the-rest" class="section level4">
 <h4>Which PFAMs are present in a certain cluster but not in the rest?</h4>
