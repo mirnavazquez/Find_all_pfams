@@ -34,7 +34,7 @@ tail /path/to/the/genomes/*pfam.hmmsearch.tab | grep "ok" | wc -l
 
 #### Make the clustering analysis
 
-Before starting, we will remove the columns in which we are not interested. I will use R for that. 
+Before starting, we will remove the columns in which we are not interested. I will use R for that. If your file starts with a # and has extra lines before your genome names, remove those. 
 
 ```{r, eval=FALSE}
 library("readr")
@@ -59,7 +59,7 @@ python3.8 mebs/scripts/groups_1_mod.py out_file2.tsv
 With your output files create a file that looks like this:
 
 ```{r include=FALSE}
-load("/media/jorgers/Seagate Backup Plus Drive/02.CP9/GitProjects/Find_all_pfams/data/Cluser.RData")
+load(here::here("/data/Cluser.RData"))
 ```
 
 

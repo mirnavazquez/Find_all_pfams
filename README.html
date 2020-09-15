@@ -391,7 +391,7 @@ summary {
 </div>
 <div id="make-the-clustering-analysis" class="section level4">
 <h4>Make the clustering analysis</h4>
-<p>Before starting, we will remove the columns in which we are not interested. I will use R for that.</p>
+<p>Before starting, we will remove the columns in which we are not interested. I will use R for that. If your file starts with a # and has extra lines before your genome names, remove those.</p>
 <pre class="r"><code>library(&quot;readr&quot;)
 pfam_table&lt;-read_tsv(&quot;out_file.tsv&quot;)
 pfam_table_df&lt;-as.data.frame(pfam_table)

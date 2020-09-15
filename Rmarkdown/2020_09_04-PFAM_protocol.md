@@ -48,7 +48,8 @@ tail /path/to/the/genomes/*pfam.hmmsearch.tab | grep "ok" | wc -l
 #### Make the clustering analysis
 
 Before starting, we will remove the columns in which we are not
-interested. I will use R for that.
+interested. I will use R for that. If your file starts with a \# and has
+extra lines before your genome names, remove those.
 
 ``` r
 library("readr")
